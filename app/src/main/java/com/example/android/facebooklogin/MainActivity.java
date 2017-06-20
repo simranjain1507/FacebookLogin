@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.addLoggingBehavior(LoggingBehavior.REQUESTS);
+        Log.e("added", "new branch created");
+
 
 //        FacebookSdk.sdkInitialize(getApplicationContext());
 
