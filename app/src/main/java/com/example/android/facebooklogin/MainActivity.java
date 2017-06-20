@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView profilePictureView;
     LoginButton loginButton;
     CallbackManager callbackManager;
+    //yguy
     Context context;
 
     @Override
