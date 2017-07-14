@@ -46,32 +46,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         FacebookSdk.addLoggingBehavior(LoggingBehavior.REQUESTS);
         Log.e("added", "second branch created");
-
-
-//        FacebookSdk.sdkInitialize(getApplicationContext());
-
-//        try {
-//            PackageInfo info = getPackageManager().getPackageInfo(
-//                    "com.example.android.facebooklogin",
-//                    PackageManager.GET_SIGNATURES);
-//            for (Signature signature : info.signatures) {
-//                MessageDigest md = MessageDigest.getInstance("SHA");
-//                md.update(signature.toByteArray());
-//                Log.e("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-//            }
-//        } catch (PackageManager.NameNotFoundException e) {
-//
-//        } catch (NoSuchAlgorithmException e) {
-//
-//        }
-
-
-//        callbackManager = CallbackManager.Factory.create();
-        setContentView(R.layout.activity_main);
         info = (TextView) findViewById(R.id.info);
         loginButton = (LoginButton) findViewById(R.id.login_button);
         profilePictureView=(ImageView) findViewById(R.id.profile);
-        //loginButton.setReadPermissions(Arrays.asList("user_status"));
         loginButton.setReadPermissions(Arrays.asList("public_profile", "email", "user_birthday", "user_location"));
         callbackManager = CallbackManager.Factory.create();
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -92,14 +69,11 @@ public class MainActivity extends AppCompatActivity {
                                             + "\n" + "Name: " + profile.getName()
                                             + "\n" + "First Name: " + profile.getFirstName()
                                             + "\n" + "Last Name: " + profile.getLastName()
-
-
                             );
                         }
                         GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                             @Override
                             public void onCompleted(JSONObject object, GraphResponse response) {
-                             //   final JSONObject jsonObject = response.getJSONObject();
                                 String id=loginResult.getAccessToken().getUserId();
                                 String imageURL;
                                 imageURL="http://graph.facebook.com/"+id+"/picture?type=large";
@@ -134,21 +108,6 @@ public class MainActivity extends AppCompatActivity {
                                         e.printStackTrace();
                                     }
                                 }
-
-
-//                                }
-                                //name=jsonObject.getString("name");
-//                                    String name=jsonObject.getString("name");
-
-//
-//                                    System.out.print(name);
-//                                    System.out.print(lastname);
-//                                    System.out.print(firstname);
-//                                    System.out.print(gender);
-//                                    System.out.print(birthday);
-//                                    System.out.print(location);
-
-
                             }
                         });
 
@@ -157,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
                         request.setParameters(parameters);
                         request.executeAsync();
                     }
-
                     //
                     @Override
                     public void onCancel() {
